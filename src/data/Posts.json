@@ -1,4 +1,38 @@
-[
+[ {
+  "id": "video1",
+  "createdAt": "2023-07-22T12:00:00Z",
+  "video":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+  "description": "Batman is a superhero appearing in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and debuted in the 27th issue of the comic book Detective Comics on March ",
+  "user": {
+    "id": "101",
+    "username": "Batman",
+    "name": "Shah Rukh Khan",
+    "image": "https://static.dc.com/dc/files/default_images/Char_Profile_Batman_20190116_5c3fc4b40faec2.47318964.jpg"
+  },
+  "nofComments": 25,
+  "nofLikes": 120,
+  "comments": [
+    {
+      "id": "1",
+      "comment": "Looking amazing!",
+      "user": {
+        "id": "201",
+        "username": "fan1",
+        "name": "Batman Fan 1"
+      }
+    },
+    {
+      "id": "2",
+      "comment": "Can't wait to watch the movie!",
+      "user": {
+        "id": "202",
+        "username": "fan2",
+        "name": "Batman Fan 2"
+      }
+    }
+  ]
+}
+  ,
   {
     "id": "1",
     "createdAt": "2023-07-22T12:00:00Z",

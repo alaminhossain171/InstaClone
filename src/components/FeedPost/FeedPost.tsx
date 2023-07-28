@@ -11,11 +11,13 @@ import Comments from '../Comments';
 import {Ipost} from '../../types/models';
 import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
+import VideoPlayer from '../VideoPlayer';
 interface IFeedPost {
   post: Ipost;
+  isVisible: boolean;
 }
 
-const FeedPost = ({post}: IFeedPost) => {
+const FeedPost = ({post, isVisible}: IFeedPost) => {
   const [showDescription, setShowDescription] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
@@ -29,17 +31,24 @@ const FeedPost = ({post}: IFeedPost) => {
   if (post.image) {
     content = (
       <DoublePressable onDoublePress={toggleLike}>
-      <Image
-        source={{
-          uri: post.image,
-        }}
-        style={styles.image}
-      />
+        <Image
+          source={{
+            uri: post.image,
+          }}
+          style={styles.image}
+        />
       </DoublePressable>
     );
   }
   if (post.images) {
     content = <Carousel images={post.images} toggleLike={toggleLike} />;
+  }
+  if (post.video) {
+    content = (
+      <DoublePressable onDoublePress={toggleLike}>
+        <VideoPlayer uri={post.video} paused={!isVisible} />
+      </DoublePressable>
+    );
   }
   return (
     <View style={styles.post}>
@@ -59,9 +68,8 @@ const FeedPost = ({post}: IFeedPost) => {
         />
       </View>
       {/* content  */}
-    
-        
-        {content}
+
+      {content}
 
       {/* footer  */}
       <View style={styles.footer}>
