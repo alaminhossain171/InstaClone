@@ -6,7 +6,7 @@ import Input from './Input';
 
 const CommentScreen = () => {
   return (
-    <View style={{flex:1}}>
+    <View style={{flex: 1}}>
       <FlatList
         style={{padding: 10}}
         data={comments}
