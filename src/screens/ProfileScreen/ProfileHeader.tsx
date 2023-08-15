@@ -3,7 +3,10 @@ import React from 'react';
 import {styles} from './Styles';
 import user from '../../data/user.json';
 import Button from '../../components/Button';
+import {useNavigation} from '@react-navigation/native';
+import {ProfileNavigatiorProp} from '../../types/navigation';
 export default function ProfileHeader() {
+  const navigation = useNavigation<ProfileNavigatiorProp>();
   return (
     <View style={styles.root}>
       <View style={styles.headerRow}>
@@ -29,7 +32,7 @@ export default function ProfileHeader() {
       <View style={{flexDirection: 'row'}}>
         <Button
           text="Edit Profile"
-          onPress={() => console.warn('edit profile')}
+          onPress={() => navigation.navigate('Edit Profile')}
         />
         <Button
           text="Share Profile"

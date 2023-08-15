@@ -12,6 +12,8 @@ import {Ipost} from '../../types/models';
 import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
+import {useNavigation} from '@react-navigation/native';
+import {FeedNavigationProp} from '../../types/navigation';
 interface IFeedPost {
   post: Ipost;
   isVisible: boolean;
@@ -20,6 +22,7 @@ interface IFeedPost {
 const FeedPost = ({post, isVisible}: IFeedPost) => {
   const [showDescription, setShowDescription] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const navigation = useNavigation<FeedNavigationProp>();
 
   const toggleDescription = () => {
     setShowDescription(description => !description);
@@ -27,6 +30,11 @@ const FeedPost = ({post, isVisible}: IFeedPost) => {
   const toggleLike = () => {
     setIsLiked(v => !v);
   };
+
+  function navigateUser() {
+    navigation.navigate('UserProfile', {userId: post.user.id});
+  }
+
   let content = null;
   if (post.image) {
     content = (
@@ -60,7 +68,9 @@ const FeedPost = ({post, isVisible}: IFeedPost) => {
           }}
           style={styles.userAvater}
         />
-        <Text style={styles.userName}>{post.user.username} </Text>
+        <Text onPress={navigateUser} style={styles.userName}>
+          {post.user.username}{' '}
+        </Text>
         <Entypo
           name="dots-three-horizontal"
           size={16}
@@ -116,7 +126,10 @@ const FeedPost = ({post, isVisible}: IFeedPost) => {
         </Text>
 
         {/* comments */}
-        <Text>View all {post.nofComments} comments</Text>
+        <Text
+          onPress={() => navigation.navigate('Comments', {postId: post.id})}>
+          View all {post.nofComments} comments
+        </Text>
         {post.comments.map(comment => {
           return <Comments key={comment.id} comment={comment} />;
         })}
